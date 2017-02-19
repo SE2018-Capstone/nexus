@@ -8,8 +8,12 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "lint": "tslint src"
+    "tslint": "tslint --project \"tsconfig.json\"",
+    "lint": "tsc --noEmit && npm run tslint",
+    "test": "sh ./lint.sh",
+    "precommit-msg": "echo 'Running pre-commit checks...' && exit 0"
   },
+  "pre-commit": ["precommit-msg", "lint"],
   "keywords": [],
   "author": "shiranka",
   "license": "MIT",
@@ -44,6 +48,7 @@
   },
   "dependencies": {
     "@types/electron": "^1.4.30",
+    "@types/electron-devtools-installer": "^2.0.2",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.20",
     "electron-compile": "^6.0.0",
@@ -57,6 +62,7 @@
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.23.0",
     "electron-prebuilt-compile": "1.4.15",
+    "pre-commit": "^1.2.2",
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"
   }

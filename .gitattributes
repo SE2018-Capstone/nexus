@@ -1,0 +1,11 @@
+* text=auto
+
+*.md text
+*.ts text
+*.c text
+*.gyp text
+*.json text
+
+*.png binary
+*.jpg binary
+

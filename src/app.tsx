@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class App extends React.Component<undefined, undefined> {
+export class App extends React.Component<{}, {}> {
   render() {
     return (
       <div>
