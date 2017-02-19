@@ -31,6 +31,19 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+
+  // On OS X, the standard behaviour is for the application
+  // to hide itself when the window is closed
+  const closeHandler = (event: Event) => {
+    if (process.platform === 'darwin') {
+      event.preventDefault();
+      mainWindow && mainWindow.hide();
+    }
+  };
+
+  mainWindow.on('close', closeHandler);
+  app.on('before-quit', () => mainWindow && mainWindow.removeListener('close', closeHandler));
 };
 
 // This method will be called when Electron has finished
@@ -52,6 +65,8 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow();
+  } else {
+    mainWindow.show();
   }
 });
 
