@@ -3,3 +3,4 @@ out
 .vscode
 npm-debug.log
 .DS_Store
+src/native/build

@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import {enableLiveReload} from 'electron-compile';
-
+import Native from '../native';
+console.log(Native);
 enableLiveReload();
 
 // app.dock.hide();
