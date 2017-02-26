@@ -3,7 +3,7 @@
   "productName": "nexus",
   "version": "1.0.0",
   "description": "My Electron application description",
-  "main": "src/index.ts",
+  "main": "src/main/index.ts",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -13,7 +13,10 @@
     "test": "sh ./lint.sh",
     "precommit-msg": "echo 'Running pre-commit checks...' && exit 0"
   },
-  "pre-commit": ["precommit-msg", "lint"],
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "keywords": [],
   "author": "shiranka",
   "license": "MIT",
@@ -51,7 +54,7 @@
     "@types/electron-devtools-installer": "^2.0.2",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.20",
-    "electron-compile": "^6.0.0",
+    "electron-compile": "^6.1.0",
     "electron-devtools-installer": "^2.0.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

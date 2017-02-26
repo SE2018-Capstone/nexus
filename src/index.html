@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="height:100%" lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
-<body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0" >
-  <div id="App"></div>
+<body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0; height:100%" >
+  <div style="height:100%; background-color: rgba(0,0,0,0)" id="react-root"></div>
 </body>
 
 <script type="text/tsx">
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { App } from './app';
+import { App } from '../src/renderer/app';
 
-ReactDOM.render(<App />, document.getElementById('App'));
+ReactDOM.render(<App />, document.getElementById('react-root'));
 </script>
 </html>
