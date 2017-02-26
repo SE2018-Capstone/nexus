@@ -4,3 +4,5 @@ out
 npm-debug.log
 .DS_Store
 src/native/build
+src/native/cmake-build-debug
+src/native/.idea

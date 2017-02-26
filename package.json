@@ -5,7 +5,7 @@
   "description": "My Electron application description",
   "main": "src/main/index.ts",
   "scripts": {
-    "compile-native": "cd src/native; node-gyp configure; HOME=~/.electron-gyp node-gyp rebuild --target=1.4.15 --arch=x64 --dist-url=https://atom.io/download/electron; cd ../../",
+    "compile-native": "cd src/native; cmake-js compile --runtime=electron --runtime-version=1.4.15; cd ../../",
     "start": "npm run compile-native; electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
