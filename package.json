@@ -6,7 +6,7 @@
   "main": "src/main/index.ts",
   "scripts": {
     "compile-native": "cd src/native; cmake-js compile --runtime=electron --runtime-version=1.4.15; cd ../../",
-    "start": "npm run compile-native; electron-forge start",
+    "start": "npm run compile-native && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "tslint": "tslint --project \"tsconfig.json\"",

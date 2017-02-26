@@ -1,8 +1,7 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, globalShortcut } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import {enableLiveReload} from 'electron-compile';
 import Native from '../native';
-console.log(Native.init());
 enableLiveReload();
 
 // app.dock.hide();
@@ -14,16 +13,15 @@ let mainWindow: Electron.BrowserWindow | null = null;
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 const createWindow = () => {
-  // const screen = require('electron').screen; // tslint:disable-line
+  const screen = require('electron').screen; // tslint:disable-line
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    // ...screen.getPrimaryDisplay().bounds,
+    ...screen.getPrimaryDisplay().bounds,
     show: false,
     // resizable: false,
     transparent: true,
     frame: false,
     hasShadow: false,
-    // type: 'desktop',
     // skipTaskbar: true,
   });
 
@@ -35,8 +33,10 @@ const createWindow = () => {
       mainWindow.show();
       if (isDevMode) {
         await installExtension(REACT_DEVELOPER_TOOLS);
-        mainWindow.webContents.openDevTools();
+        // mainWindow.webContents.openDevTools();
       }
+
+      Native.init(mainWindow.getNativeWindowHandle());
     }
   });
 
@@ -77,4 +77,23 @@ app.on('activate', () => {
   } else {
     mainWindow.show();
   }
+});
+
+
+app.on('ready', () => {
+  // Register a 'CommandOrControl+X' shortcut listener.
+  let isGhost = false;
+  const ret = globalShortcut.register('CommandOrControl+`', () => {
+    isGhost ? Native.disableGhost() : Native.enableGhost();
+    isGhost = !isGhost;
+  });
+
+  if (!ret) {
+    console.log('registration failed');
+  }
+});
+
+app.on('will-quit', () => {
+  // Unregister all shortcuts.
+  globalShortcut.unregisterAll();
 });

@@ -1,5 +1,7 @@
 type NexusNative = {
-  init: () => void;
+  init: (winHandle: Buffer) => void;
+  enableGhost: () => void;
+  disableGhost: () => void;
 };
 
 export default require('bindings')({ //tslint:disable-line

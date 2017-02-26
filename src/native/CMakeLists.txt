@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
 
+set(CMAKE_CXX_STANDARD 11) # C++11...
+set(CMAKE_CXX_STANDARD_REQUIRED ON) #...is required...
+set(CMAKE_CXX_EXTENSIONS OFF) #...without compiler extensions like gnu++11
+
+if(APPLE)
+    ADD_DEFINITIONS("-x objective-c++")
+endif(APPLE)
+
 # Name of the project (will be the name of the plugin)
 project(NexusNative)
-
 # Build a shared library named after the project from the files in `src/`
-file(GLOB SOURCE_FILES "./*.cc" "./*.h")
+file(GLOB SOURCE_FILES "./*.cc" "./*.h" "./*.mm")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 # Gives our library file a .node extension without any "lib" prefix
